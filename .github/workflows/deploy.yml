@@ -34,6 +34,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_and_push
     steps:
+      - name: Set Short SHA
+        run: echo "SHORT_SHA=$(echo ${{ github.sha }} | head -c7)" >> $GITHUB_ENV
+
       - name: Deploy to Node 1
         uses: appleboy/ssh-action@master
         with:
@@ -42,7 +45,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             # Stop keys to prevent conflicts
-            export IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+            export IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.SHORT_SHA }}
             # Login
             echo ${{ secrets.DO_TOKEN }} | docker login registry.digitalocean.com -u do-user --password-stdin
             # Pull
@@ -64,7 +67,7 @@ jobs:
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            export IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+            export IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.SHORT_SHA }}
             echo ${{ secrets.DO_TOKEN }} | docker login registry.digitalocean.com -u do-user --password-stdin
             docker pull $IMAGE
             docker stop ${{ env.CONTAINER_NAME }} || true
