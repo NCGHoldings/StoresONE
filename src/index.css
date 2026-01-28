@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 220 25% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 10%;
+
+    --primary: 217 91% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 220 25% 25%;
+
+    --muted: 210 30% 95%;
+    --muted-foreground: 220 15% 45%;
+
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 35%;
+
+    --radius: 0.5rem;
+
+    /* Custom enterprise tokens */
+    --sidebar-bg: 220 25% 12%;
+    --sidebar-foreground: 210 20% 90%;
+    --sidebar-hover: 220 25% 18%;
+    --sidebar-active: 217 91% 35%;
+    
+    --kpi-positive: 142 76% 36%;
+    --kpi-negative: 0 84% 60%;
+    --kpi-neutral: 217 91% 35%;
+
+    --chart-1: 217 91% 35%;
+    --chart-2: 199 89% 48%;
+    --chart-3: 142 76% 36%;
+    --chart-4: 38 92% 50%;
+    --chart-5: 280 65% 60%;
+  }
+
+  .dark {
+    --background: 220 25% 8%;
+    --foreground: 210 20% 98%;
+
+    --card: 220 25% 12%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 220 25% 12%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 217 91% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 25% 18%;
+    --secondary-foreground: 210 20% 90%;
+
+    --muted: 220 25% 18%;
+    --muted-foreground: 210 20% 65%;
+
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 25% 20%;
+    --input: 220 25% 20%;
+    --ring: 217 91% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  .sidebar-nav-item {
+    @apply flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200;
+    @apply text-sidebar-foreground/80 hover:bg-sidebar-hover hover:text-sidebar-foreground;
+  }
+
+  .sidebar-nav-item.active {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .kpi-card {
+    @apply bg-card rounded-xl border border-border p-6 shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+
+  .module-card {
+    @apply bg-card rounded-xl border border-border p-6 shadow-sm hover:shadow-lg hover:border-primary/30 transition-all duration-300 cursor-pointer;
+  }
+
+  .data-table {
+    @apply w-full text-sm;
+  }
+
+  .data-table th {
+    @apply text-left font-semibold text-muted-foreground uppercase text-xs tracking-wider py-3 px-4 border-b;
+  }
+
+  .data-table td {
+    @apply py-4 px-4 border-b border-border/50;
+  }
+
+  .data-table tr:hover td {
+    @apply bg-muted/50;
+  }
+
+  .status-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .status-badge.success {
+    @apply bg-success/10 text-success;
+  }
+
+  .status-badge.warning {
+    @apply bg-warning/10 text-warning;
+  }
+
+  .status-badge.error {
+    @apply bg-destructive/10 text-destructive;
+  }
+
+  .status-badge.info {
+    @apply bg-primary/10 text-primary;
+  }
+
+  .page-header {
+    @apply mb-8;
+  }
+
+  .page-title {
+    @apply text-2xl font-bold text-foreground;
+  }
+
+  .page-subtitle {
+    @apply text-muted-foreground mt-1;
+  }
+}
+
+@layer utilities {
+  .glass-effect {
+    @apply backdrop-blur-sm bg-card/80;
+  }
+
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+  }
+
+  .gradient-sidebar {
+    background: linear-gradient(180deg, hsl(var(--sidebar-bg)) 0%, hsl(220 25% 8%) 100%);
+  }
+}

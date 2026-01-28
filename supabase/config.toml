@@ -1,0 +1,25 @@
+project_id = "sofyrkhxmxqxvwkiznde"
+
+[functions.create-user]
+verify_jwt = false
+
+[functions.pos-sale]
+verify_jwt = false
+
+[functions.pos-customers]
+verify_jwt = false
+
+[functions.approval-escalation]
+verify_jwt = false
+
+[functions.pos-payment]
+verify_jwt = false
+
+[functions.pos-return]
+verify_jwt = false
+
+[functions.pos-credit-note]
+verify_jwt = false
+
+[functions.pos-debit-note]
+verify_jwt = false
